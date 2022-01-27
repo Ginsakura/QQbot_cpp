@@ -1,7 +1,8 @@
-﻿// Tarot_CPP.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
-//
+﻿// Version 0.0.1 // 占坑用
 
 #include <iostream>
+#include "sqlite3.h"
+using namespace std;
 
 int main()
 {
