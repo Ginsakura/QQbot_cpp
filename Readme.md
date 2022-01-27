@@ -1,4 +1,4 @@
-# 第三方库存放于`./Library/`内
+# 第三方库存放于[`./Library/`](https://github.com/Ginsakura/QQbot_cpp/tree/main/Library)内
 # QQbot_cpp重构
 qqbot_python的cpp重构
 
