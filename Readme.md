@@ -1,3 +1,4 @@
+# 第三方库存放于`./Library/`内
 # QQbot_cpp重构
 qqbot_python的cpp重构
 
