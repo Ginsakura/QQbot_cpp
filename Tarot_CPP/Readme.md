@@ -8,6 +8,13 @@
 
 使用第三方库[`sqlite3`](https://github.com/Ginsakura/QQbot_cpp/tree/main/Library)
 
-### Version 0.0.1
+### 更新说明：
+#### Version 0.0.2
+
+`->1.构建Random函数`
+
+`->2.main函数接收传参`
+
+#### Version 0.0.1
 
 `->1.占位用`
