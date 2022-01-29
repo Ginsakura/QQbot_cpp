@@ -1,8 +1,8 @@
 # 第三方库存放于[`./Library/`](https://github.com/Ginsakura/QQbot_cpp/tree/main/Library)内
-# QQbot_cpp重构
-qqbot_python的cpp重构
+# QQ_bot_cpp重构
+[qq_bot_python](https://github.com/Ginsakura/QQbot_Python)的cpp重构
 
 ## [Tarot](https://github.com/Ginsakura/QQbot_cpp/tree/main/Tarot)
-### Version 0.0.1
+### Version 0.0.3
 
-压舱底，用来证明我开了这个坑
+在写了在写了(咕咕咕)
