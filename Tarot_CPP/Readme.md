@@ -9,6 +9,10 @@
 使用第三方库[`sqlite3`](https://github.com/Ginsakura/QQbot_cpp/tree/main/Library)
 
 ### 更新说明：
+#### Version 1.0.0
+
+`->1.完成三次取随机数并输出`
+
 #### Version 0.0.3
 
 `->1.重构塔罗牌数组`
