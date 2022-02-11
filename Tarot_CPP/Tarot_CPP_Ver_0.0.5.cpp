@@ -1,4 +1,4 @@
-﻿// Version 1.0.0
+﻿// Version 0.0.5
 // 随机模块
 
 #include <iostream>
@@ -6,12 +6,11 @@
 #include <Windows.h>
 #include <string>
 #include <ctime>
-#include <cstdlib>
 //#include <random>
 //#include <system.h>
 
 using namespace std;
-string Version = "1.0.0";
+string Version = "0.0.5";
 
 string path = "./Tarot_data/";
 string file_name = "Tarot_Data.db";
@@ -85,11 +84,10 @@ int main(int argc, char* argv[])
 //通过seed规定随机数种子
 //通过numD、numT规定随机数上下界
 
-int Random(int numD, int numT, int seed)
+int Random(int numD, int numT, int seed, int user, int unix)
 {
     int R;
-    srand((unsigned)seed);
-    R = rand();
+    R = (((((seed << 7) + 159) >> 7) + 753) & (((((user >> 9) - 751) << 9) + 483) ^ ((((unix >> 5) * 8) << 5) + 153)) + 8426);
     cout << "R:" << R << endl;
     RandNum = R % numT;
     return RandNum;
@@ -100,7 +98,7 @@ int Random(int numD, int numT, int seed)
 void Dice(int user)
 {
     //int seed;
-    int Random(int numD, int numT, int seed);
+    int Random(int numD, int numT, int seed, int user, int unix);
     int Seed(int, int, int);
     time_t Unix = time(0);
     int unix = Unix;
@@ -114,22 +112,17 @@ void Dice(int user)
     //seed = Seed(user, unix);
     for (int i = 0; i < 3; i++)
     {
-        num1 = Random(0, 5, Seed(user, unix, seedlist[i][0]));
+        num1 = Random(0, 5, Seed(user, unix, seedlist[i][0]), user, unix);
         Tarot[i][0] = num1;
-        num2 = Random(0, AkanaNum[num1], Seed(user, unix, seedlist[i][1]));
+        num2 = Random(0, AkanaNum[num1], Seed(user, unix, seedlist[i][1]), user, unix);
         Tarot[i][1] = num2;
-        num3 = Random(0, 2, Seed(user, unix, seedlist[i][2]));
-
-        num3 = ((num3 + unix) * ((user / (num3+1)) % (((unix - num3) % 5)+2))) % 2;
+        num3 = Random(0, 2, Seed(user, unix, seedlist[i][2]), user, unix);
         Tarot[i][2] = num3;
     }
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
-        {
-            cout << "Tarot[" << i << "][" << j << "]:" << Tarot[i][j] << endl;
-        }
-        cout << Akana[Tarot[i][0]][Tarot[i][1]] << "," << bit[Tarot[i][2]] << endl;
+        cout << "Tarot[" << i << "][" << j << "]:" << Tarot[i][j] << endl;
     }
     return ;
 }

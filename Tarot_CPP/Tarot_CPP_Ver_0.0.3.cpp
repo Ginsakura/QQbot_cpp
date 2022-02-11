@@ -1,17 +1,15 @@
-﻿// Version 1.0.0
+﻿// Version 0.0.3
 // 随机模块
-
 #include <iostream>
 #include "sqlite3.h"
+//#include <system.h>
 #include <Windows.h>
+#include <random>
 #include <string>
 #include <ctime>
-#include <cstdlib>
-//#include <random>
-//#include <system.h>
 
 using namespace std;
-string Version = "1.0.0";
+string Version = "0.0.2";
 
 string path = "./Tarot_data/";
 string file_name = "Tarot_Data.db";
@@ -49,104 +47,61 @@ string Akana[5][22] = {
 };
 int AkanaNum[5] = { 22, 14, 14, 14, 14 };
 string bit[2] = { "逆位", "正位" };
-int Tarot[3][3] = { 0 };
-int RandNum = -1;
-
 
 int main(int argc, char* argv[])
 {
     string path = argv[0];
     string user_str = argv[1];
     int user = atoi(user_str.c_str());
-    void Dice(int);
+    int* result_1;
+
+    //int Random(int, int);
+    int* Dice(int);
+
+    //void* time = *time(NULL);
     cout << "path:" << path << endl;
     cout << "user:" << user << endl;
-    Dice(user);
-    for (int i = 0, num = 0; i < 3; i++)
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            cout << "res[" << i << "][" << j << "]:" << Tarot[i][j] << endl;
-            num++;
-        }
-    }
+    result_1 = Dice(user);
+
+    //for (int i = 0;i < 10;i++)
+    //{
+    //    int ND, NU;
+    //    ND = i * 2;
+    //    NU = (i * 2 + 4) * 5;
+    //    int  = Random(ND, NU);
+    //    cout << "num" << i+1 << ':' << num << endl;
+    //    cout << "ND=" << ND << '\t' << "NU=" << NU << endl;
+    //}
     system("pause");
     return 0;
 }
 
-//int Random(int numD, int numT, int seed)
-//{
-//    default_random_engine rand(seed);
-//    uniform_int_distribution<int> randint(numD, numT);
-//    RandNum = randint(rand);
-//    cout << "randnum:" << RandNum << endl;
-//    return RandNum;
-//}
-//通过seed规定随机数种子
-//通过numD、numT规定随机数上下界
-
-int Random(int numD, int numT, int seed)
+int Random(int numD, int numU, int seed)
 {
-    int R;
-    srand((unsigned)seed);
-    R = rand();
-    cout << "R:" << R << endl;
-    RandNum = R % numT;
-    return RandNum;
+    default_random_engine rand(seed);
+    uniform_int_distribution<int> randint(numD, numU);
+    int num = randint(rand);
+    return num;
 }
-//通过seed规定随机数种子
-//通过numD、numT规定随机数上下界
 
-void Dice(int user)
+int* Dice(int user)
 {
-    //int seed;
-    int Random(int numD, int numT, int seed);
-    int Seed(int, int, int);
-    time_t Unix = time(0);
-    int unix = Unix;
-    int num1 = -1, num2 = -1, num3 = -1;
-    int seedlist[3][3] = 
-    {
-        {{78941644}, {25453452}, {44700646}},
-        {{85135411}, {40110464}, {45802512}},
-        {{85594741}, {02604516}, {51024404}}
-    };
-    //seed = Seed(user, unix);
-    for (int i = 0; i < 3; i++)
-    {
-        num1 = Random(0, 5, Seed(user, unix, seedlist[i][0]));
-        Tarot[i][0] = num1;
-        num2 = Random(0, AkanaNum[num1], Seed(user, unix, seedlist[i][1]));
-        Tarot[i][1] = num2;
-        num3 = Random(0, 2, Seed(user, unix, seedlist[i][2]));
+    int seed;
+    int Random(int, int);
+    int Seed(int, int);
+    int a[3] = { 0 };
 
-        num3 = ((num3 + unix) * ((user / (num3+1)) % (((unix - num3) % 5)+2))) % 2;
-        Tarot[i][2] = num3;
-    }
-    for (int i = 0; i < 3; i++)
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            cout << "Tarot[" << i << "][" << j << "]:" << Tarot[i][j] << endl;
-        }
-        cout << Akana[Tarot[i][0]][Tarot[i][1]] << "," << bit[Tarot[i][2]] << endl;
-    }
-    return ;
+    time_t unix = time(0);
+    seed = Seed(user, unix);
+
+    return a;
 }
-//输入user，计算三张塔罗牌
 
-int Seed(int user, int unix, int salt)
-//Seed=User+Unix+Salt
+int Seed(int user, int unix)
 {
-    int seed1, seed2, seed;
-    seed1 = user & unix ^ salt | ( unix ^ salt );
-    seed2 = user ^ unix | salt & ((unix << 5) & (user >> 5));
-    seed = seed1 + seed2;
-    cout << "seed:" << seed << endl;
-    return seed;
+    int seed;
+    seed = user + unix;
 }
-//通过user和unix时间戳,再加盐，来计算出一个seed
-
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
 // 调试程序: F5 或调试 >“开始调试”菜单
