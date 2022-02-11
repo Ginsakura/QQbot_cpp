@@ -6,6 +6,10 @@
 [QQbot_python](https://github.com/Ginsakura/QQbot_Python)的cpp重构
 
 ## [Tarot](https://github.com/Ginsakura/QQbot_cpp/tree/main/Tarot)
-### Version 0.0.3
+### Version 1.0.0
+
+使用方法：`./Tarot.exe [QQ号]`
+
+仅完成取随机数，未进行重复校验，未实现数据库存储。
 
 在写了在写了(咕咕咕)
